@@ -2,7 +2,7 @@
   <div>
       <h1 class="text-center mb-5">Login</h1>
 
-    <error></error>
+    <error :errors="v$.$errors"  :error="error"></error>
 
     <div class="row justify-content-center">
         <div class="col-6">
@@ -67,9 +67,12 @@ export default {
 
 firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
   .then((userCredential) => {
-    // Signed in
     const user = userCredential.user;
     console.log(user)
+     this.$router.push(
+            this.$route.query.redirect || {
+              name: "home"
+            })
   })
   .catch((error) => {
     this.error = error;

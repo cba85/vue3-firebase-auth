@@ -75,9 +75,17 @@ export default {
 
 firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
   .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log(user)
+    console.log(userCredential.user)
+     userCredential.user
+            .updateProfile({
+              displayName: this.form.name
+            }).then(() => {
+                this.$router.push(
+            this.$route.query.redirect || {
+              name: "home"
+            }
+          );
+            });
   })
   .catch((error) => {
     this.error = error;

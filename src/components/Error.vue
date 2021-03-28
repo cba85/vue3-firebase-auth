@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="alert alert-danger" v-if="error">
+  <div class="alert alert-danger text-center" v-if="error">
              {{ error.message }}
       </div>
 
