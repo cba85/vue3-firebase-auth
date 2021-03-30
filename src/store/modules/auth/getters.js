@@ -5,3 +5,7 @@ export const user = (state) => {
 export const loggedIn = (state) => {
   return state.user.loggedIn;
 };
+
+export const data = (state) => {
+  return state.user.data;
+};

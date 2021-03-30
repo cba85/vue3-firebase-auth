@@ -7,6 +7,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+
+ <li class="nav-item">
+           <router-link class="nav-link" to="/home">Home</router-link>
+        </li>
+        <li class="nav-item">
+           <router-link class="nav-link" to="/account">Account</router-link>
+        </li>
+        <li class="nav-item">
+           <router-link class="nav-link" to="/login">Login</router-link>
+        </li>
+        <li class="nav-item">
+           <router-link class="nav-link" to="/register">Register</router-link>
+        </li>
+
         <li class="nav-item" v-if="!user.loggedIn">
            <router-link class="nav-link" to="/login">Login</router-link>
         </li>
@@ -25,6 +39,7 @@
 import { mapGetters } from "vuex";
 import firebase from "firebase/app";
 import "firebase/auth";
+import store from "@/store";
 
 export default {
 name: "Navbar",
@@ -40,6 +55,7 @@ name: "Navbar",
         .auth()
         .signOut()
         .then(() => {
+          store.dispatch('auth/fetchUser', null)
           this.$router.push(
             this.$route.query.redirect || {
               name: "welcome"

@@ -3,6 +3,7 @@ import Welcome from "../views/Welcome.vue";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import Account from "../views/Account.vue";
 import store from "../store/modules/auth";
 
 const routes = [
@@ -18,6 +19,12 @@ const routes = [
     meta: {
       auth: true,
     },
+  },
+  {
+    path: "/account",
+    name: "account",
+    component: Account,
+    meta: { auth: true },
   },
   {
     path: "/register",
@@ -44,7 +51,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   console.log("middleware");
-  if (!store.getters.loggedIn && to.meta.auth) {
+  if (!store.state.user.loggedIn && to.meta.auth) {
     return next({
       name: "login",
       query: {
@@ -53,9 +60,9 @@ router.beforeEach((to, from, next) => {
     });
   }
 
-  if (store.getters.loggedIn && to.meta.guest) {
+  if (store.state.user.loggedIn && to.meta.guest) {
     return next({
-      name: "welcome",
+      name: "home",
     });
   }
 

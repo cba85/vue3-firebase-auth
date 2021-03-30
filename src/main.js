@@ -20,9 +20,10 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged((user) => {
   console.log(user);
   store.dispatch("auth/fetchUser", user);
-
-  createApp(App)
-    .use(store)
-    .use(router)
-    .mount("#app");
 });
+
+
+createApp(App)
+.use(store)
+.use(router)
+.mount("#app");

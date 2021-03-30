@@ -2,10 +2,11 @@
   <div>
       <h1 class="text-center mb-5">Login</h1>
 
-    <error :errors="v$.$errors"  :error="error"></error>
-
     <div class="row justify-content-center">
         <div class="col-6">
+
+    <error :errors="v$.$errors" :error="error"></error>
+
    <form @submit.prevent="login">
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
